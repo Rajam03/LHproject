@@ -1,0 +1,51 @@
+<div class="card m-3">
+    <div class="card-body">
+            <form [formGroup]="form" >
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>State</label>
+                         
+                        <select (change)="selectstate(value)" #value formControlName="state" class="custom-select"
+                        [ngClass]="{ 'is-invalid': f.state.touched && f.state.errors}"  >
+                            <option value="">Select state...</option>
+                            <option  *ngFor="let state of this.statedetails"  [value]="state.iso2" >
+                                {{state.name}}
+                                
+                            </option>
+                           
+                        </select>
+                         <div *ngIf="f.state.touched && f.state.errors" class="text-danger">
+                            <div *ngIf="f.state.errors?.required">State is required</div>
+                        </div>
+                
+                        
+                            <label> City</label>
+                            <select formControlName="city"  class="custom-select"
+                            [ngClass]="{ 'is-invalid': f.city.touched && f.city.errors }">
+                            <option value="">Select city...</option>
+                                <option *ngFor="let city of this.citydetails" >
+                                    {{city.name}}
+                                </option>
+                               
+                            </select>
+                          
+                           
+                            <div *ngIf="f.city.touched && f.city.errors" class="text-danger">
+                                <div *ngIf="f.city.errors?.required">City is required</div>
+                            </div>
+                          <div>{{weather}}</div>
+                    </div>
+            
+            </div>
+            <!-- <div class="text-center">
+                <button class="btn btn-primary mr-1" >Submit</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+            </div> -->
+        </form>
+    </div>
+</div>
+
+
+<!-- 
+ <input type="text" placeholder="Enter city" [formControl]="searchInput">
+ <h3>{{weather}}</h3> -->
